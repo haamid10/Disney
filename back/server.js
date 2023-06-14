@@ -8,8 +8,9 @@ dotenv.config()
 mongoose.connect(process.env.MONGO,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    // useCreateIndex: true,
 }).then(()=> console.log('db connection successful!'))
-.catch(()=> console.log(err));
+.catch((err)=> console.log(err));
 
 app.use(express.json())
 app.use("/api/auth", authRoute)
