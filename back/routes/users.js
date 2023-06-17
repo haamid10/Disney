@@ -4,6 +4,10 @@ const CryptoJS = require("crypto-js")
 
 
 // Update
+router.put("/:id", async (req, res) => { 
+
+})
+
 // DELETE
 // GET
 // GET ALL
