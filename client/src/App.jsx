@@ -3,10 +3,9 @@ import Register from "./Pages/Register";
 import Watch from "./Pages/Watch";
 import Login from "./Pages/Login";
 import {
-  BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
-  Redirect,
+  Redirect as RouterRedirect
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./authContext/AuthContext";
@@ -14,15 +13,19 @@ import { AuthContext } from "./authContext/AuthContext";
 const App = () => {
   const { user } = useContext(AuthContext);
   return (
-    <Router>
-      <Switch>
+    <>
+
+    <div>
+      <h1>Hello world</h1>
+    </div>
+      <Routes>
         <Route exact path="/">
-          {user ? <Home /> : <Redirect to="/register" />}
+          {user ? <Home /> : <RouterRedirect to="/register" />}
         </Route>
-        <Route path="/register">
-          {!user ? <Register /> : <Redirect to="/" />}
+        <Route  path="/register">
+          {!user ? <Register /> : (<RouterRedirect to="/" />)}
         </Route>
-        <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route>
+        <Route path="/login">{!user ? <Login /> : <RouterRedirect to="/" />}</Route>
         {user && (
           <>
             <Route path="/movies">
@@ -36,8 +39,8 @@ const App = () => {
             </Route>
           </>
         )}
-      </Switch>
-    </Router>
+      </Routes>
+    </>
   );
 };
 
